@@ -8,7 +8,10 @@ I do not have any current plans on what to do after graduating with my Ph.D., bu
 
 For a tutorial on how I made this blog page, visit [this link](https://chadbaldwin.net/2021/03/14/how-to-build-a-sql-blog.html) or look at my first blog for my thoughts.
 
+----
 ### Proverbs 3: 3-4 (NIV)
 
-&ensp;&ensp;&ensp;&ensp;&ensp;Let love and faithfulness never leave you; bind them around your neck, write them on the tablet of your heart.
+Let love and faithfulness never leave you; bind them around your neck, write them on the tablet of your heart.
 Then you will win favor and a good name in the sight of God and man.
+
+---

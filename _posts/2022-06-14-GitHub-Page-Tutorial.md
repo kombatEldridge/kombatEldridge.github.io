@@ -48,3 +48,28 @@ To create a blog post, you can create a `Markdown` file in the `_posts` folder.
 *Note:* When naming your blog post file, you must name it in the following manner, or else it will not work:
 * `yyyy-mm-dd-your-blog-post-name.md`
 
+#### Step 2: Starting Your Post
+
+When you create this blog file, you will want to start it by adding a header. This will double as the name of your blog posting on your home page. Use at least one `#` before the title to indicate it as a header.
+
+---
+
+## Editing Your Blog Page
+
+#### Option 1: GitHub
+
+If you want to make changes to your blog post, you can always just use the repository menu in GitHub and edit files that way. Anytime you make a change to a file, you jsut need to commit the work you've done, and after a couple of seconds, the blog page should auto-update.
+
+#### Option 2: Visual Studio Code
+
+This option is only for those who use Visual Studio Code to write code. 
+
+1. In order to add your blog repository to your VS Code, go to the Code dropdown menu of your Repo page on GitHub. 
+2. Copy the HTTPS clone link
+![](/pictures/Picture2.png)
+
+3. Open VS Code
+4. Select Clone Repository in Source Control
+![](/pictures/Picture3.png)
+5. Select a folder to host the Repo on your local hard drive.
+6. Now, anytime you open the Repo on VS Code, you can just save and commit your changes straight from VS Code and not GitHub.

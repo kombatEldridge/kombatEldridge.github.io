@@ -2,12 +2,13 @@
 ---
 This blog post intends on teaching the reader the steps to hosting a Jupyter Notebook on a remote server. However, you must first meet some requirements to begin:
 
-1. Install [Jupyter Notebook](https://jupyter.org/install) on your local machine.
-2. Obtain SSH credentials to your remote server.
-3. Install Jupyter Notebook onto the remote server. (Ask your system admin if you think it is not installed.)
-4. Remote VPN into your remote server.
+1. Obtain SSH credentials to your remote server.
+2. Install Jupyter Notebook onto the remote server. (Ask your system admin if you think it is not installed.)
+3. Remote VPN into your remote server.
 
 Once these four things are accomplished, you can begin.
+
+*Note*: If you want to edit your Jupyter Notebook without a remote machine, you will have to install [Jupyter Notebook](https://jupyter.org/install) onto your local machine.
 
 ---
 # Step 1: SSH Tunnelling

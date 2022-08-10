@@ -6,7 +6,7 @@ If you don’t have a GitHub account, create one, otherwise go log in.
 
 *Note:* Your username will eventually be part of your websites URL, so just keep that in mind when picking a username.
 
-### Step 2 - Open the template I built for you
+### Step 2 - Open template I built for you
 
 Log into your GitHub account and then click [this](https://github.com/chadbaldwin/simple-blog-bootstrap/generate) link.
 

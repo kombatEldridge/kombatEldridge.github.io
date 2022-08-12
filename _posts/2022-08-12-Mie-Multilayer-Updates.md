@@ -14,7 +14,9 @@
 
 ## Juy 22, 2022    
 
-* All settings like layer size and dielectric information are stored in a JSON file called `mieSettings.txt`
+* All settings like layer size and dielectric information are stored in a JSON file called mieSettings.txt
+
+
 ```
 {
     "numLayers": "3",

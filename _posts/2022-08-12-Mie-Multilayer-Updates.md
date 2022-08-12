@@ -61,7 +61,7 @@
 
 ### Future Work/Works in Progress
     
-* There is an issue right now where the near-field enhancement for a pure Silica sphere is returning a value close to \\(0.014\\} where \\(Q_{nf}=1\\) would be expected.
+* There is an issue right now where the near-field enhancement for a pure Silica sphere is returning a value close to $0.014$ where \\(Q_{nf}=1\\) would be expected.
 * We are curious to see if we can provide the \\(Q_{ext}\\), \\(Q_{sca}\\), and \\(Q_{abs}\\) for each layer.
 * To solidify the validity of the code, I plan on providing a proof for the equations used.
 * The webpage version of the code needs to accept more than one dielectric file.

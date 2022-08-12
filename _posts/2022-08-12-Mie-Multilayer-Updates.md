@@ -13,8 +13,9 @@
 ## Change Log:
 
 <details>
-    <summary style="font-size: 14pt">July 22, 2022</summary>
+    <summary style="font-size: 14pt">July 22, 2022</summary><br />
     
+
 * All settings like layer size and dielectric information are stored in a JSON file called `mieSettings.txt`
 ```
 {

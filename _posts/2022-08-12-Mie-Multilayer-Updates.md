@@ -12,9 +12,7 @@
 
 ## Change Log:
 
-<details>
-    <summary style="font-size: 14pt">July 22, 2022</summary><br />
-    
+## Juy 22, 2022    
 
 * All settings like layer size and dielectric information are stored in a JSON file called `mieSettings.txt`
 ```
@@ -51,26 +49,18 @@
 * Each layer of the sphere now uses a separate dielecric file, but dielectric information can come from on file if user simply inputs the same file path multiple times.
 * User now forced to use linear interpolation feature.
 
-</details>
-
-<details>
-    <summary style="font-size: 14pt">August 12, 2022</summary>
-    
+## August 12, 2022    
 
 * Automatic interpolation optimized to use *polynomial interpolation* for dielectric information (a four-point interpolation inspired by [this resource](https://www.appstate.edu/~grayro/comphys/lecture4_11.pdf)).
 * Comments added to code and variable names updated to reflect their function.
 * Small optimization changes.
-</details>
 
 ---
 
-<details open>
-    <summary style="font-size: 14pt">Future Work/Works in Progress</summary>
+## Future Work/Works in Progress
     
 * There is an issue right now where the near-field enhancement for a pure Silica sphere is returning a value close to $0.014$ where $Q_{nf}=1$ would be expected.
 * We are curious to see if we can provide the $Q_{ext}$, $Q_{sca}$, and $Q_{abs}$ for each layer.
 * To solidify the validity of the code, I plan on providing a proof for the equations used.
 * The webpage version of the code needs to accept more than one dielectric file.
 * Webpage version also needs info snippets for each input to help the user.
-
-</details>

@@ -8,7 +8,7 @@ email: "brinton1516@mail.com"
 #########################################################################################
 ######### Nothing below needs to be changed (unless you know what you're doing) #########
 #########################################################################################
-theme: "minima"
+remote_theme: pages-themes/minimal@v0.2.0
 
 rss: rss
 
@@ -19,6 +19,8 @@ kramdown:
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-remote-theme
+
 
 titles_from_headings:
   strip_title: true

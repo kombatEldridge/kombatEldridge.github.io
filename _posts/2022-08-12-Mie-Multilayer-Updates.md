@@ -49,11 +49,13 @@
 
 * Each layer of the sphere now uses a separate dielecric file, but dielectric information can come from on file if user simply inputs the same file path multiple times.
 * User now forced to use linear interpolation feature.
+
 </details>
 
 <details>
     <summary style="font-size: 14pt">August 12, 2022</summary>
     
+
 * Automatic interpolation optimized to use *polynomial interpolation* for dielectric information (a four-point interpolation inspired by [this resource](https://www.appstate.edu/~grayro/comphys/lecture4_11.pdf)).
 * Comments added to code and variable names updated to reflect their function.
 * Small optimization changes.

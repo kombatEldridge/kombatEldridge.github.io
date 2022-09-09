@@ -3,7 +3,7 @@
 In joining with the Freed-Hardeman University Computational Chemistry research group, my collegues and I are investigating the interaction of a multilayered Gold (Au) nanoparticle with light of varying wavelengths. Specifically, we are examining a nanoparticle with a Au core and a Au shell separated by a layer of glass (SiO<sub>2</sub>). 
 
 
-![Multilayer Diagram](/pictures/AuSiO2AuDiagram.png){:height="36px" width="36px"}.
+![Multilayer Diagram](/pictures/AuSiO2AuDiagram.png){:height="236px" width="236px"}.
 
 ---
 

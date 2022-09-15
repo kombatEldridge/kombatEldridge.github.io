@@ -33,7 +33,10 @@ Analyzing $78\times4 = 312$ columns of data can be cumberson. However, I am enro
 We begin by proprocessing the raw data from the HPC to be better fit into some database managment software. The *txt* files from the research group were extracted from the HPC, organized in folders by experiment, combined for both inner sphere and outer sphere measurements, and then combined completely into one *txt* file containing rows for wavelength, $Q_{ext}$, $Q_{sca}$, $Q_{abs}$, $E^2$, and Experimental Parameters. All preprocessing was done through multiple *.py* scripts.
 
 ### SQL Schema
-Insert Schema image here.
+Our schema is a simple one. We have the option to track more meta data about our experiments (who ran it, when it was ran, configuration file, etc.), but they are not important to our analysis. Perhaps I will add this capability in the future.
+
+![Multilayer Diagram](/pictures/drawSQL-export-2022-09-15_12_57.png)
+
 
 ### SQL Implimentation
 Currently, the data has not been implimenting into an SQL server.

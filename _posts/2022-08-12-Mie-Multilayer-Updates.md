@@ -59,7 +59,7 @@
 
 ### September 19, 2022
 
-* Addition of the [scattnlay](https://github.com/ovidiopr/scattnlay) package to the web application.
+* ***Attempting to*** make the addtion of the [scattnlay](https://github.com/ovidiopr/scattnlay) package to the web application.
 * We intend to utilize the work done by K. Ladutenko, U. Pal, A. Rivera and O. Peña-Rodríguez to offer additional tools through our web app.
 
 ---

@@ -57,6 +57,11 @@
 * Comments added to code and variable names updated to reflect their function.
 * Small optimization changes.
 
+### September 19, 2022
+
+* Addition of the [scattnlay](https://github.com/ovidiopr/scattnlay) package to the web application.
+* We intend to utilize the work done by K. Ladutenko, U. Pal, A. Rivera and O. Peña-Rodríguez to offer additional tools through our web app.
+
 ---
 
 ### Future Work/Works in Progress

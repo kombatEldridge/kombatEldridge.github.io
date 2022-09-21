@@ -62,6 +62,9 @@
 * ***Attempting to*** make the addtion of the [scattnlay](https://github.com/ovidiopr/scattnlay) package to the web application.
 * We intend to utilize the work done by K. Ladutenko, U. Pal, A. Rivera and O. Peña-Rodríguez to offer additional tools through our web app.
 
+### September 20, 2022
+* The [scattnlay](https://github.com/ovidiopr/scattnlay) package offers a python wrapper (PyBind11) that allows the system to call on C++ files using python. Since our webpage uses python, I would like to use this wrapper. However, PyBind11 requires a g++ version 4.8 (a C++ interpreter) or higher, and our webpage server runs g++ version 4.4 and cannot be updated unless through a convoluted linux update process. Therefore, I want to use Boost.Python, which is similar to PyBind11 but more heavy duty.
+* I plan to convert the PyBind11 files in the repo to use Boost.Python instead. Hopefully, then we can run the [scattnlay](https://github.com/ovidiopr/scattnlay) package on the webpage.
 ---
 
 ### Future Work/Works in Progress

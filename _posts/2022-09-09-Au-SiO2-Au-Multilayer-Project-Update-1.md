@@ -35,8 +35,7 @@ We begin by proprocessing the raw data from the HPC to be better fit into some d
 ### SQL Schema
 Our schema is a simple one. We have the option to track more meta data about our experiments (who ran it, when it was ran, configuration file, etc.), but they are not important to our analysis. Perhaps I will add this capability in the future.
 
-![Multilayer Diagram](/pictures/drawSQL-export-2022-09-15_12_57.png)
-
+<iframe width="100%" height="500px" style="box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); border-radius:15px;" allowtransparency="true" allowfullscreen="true" scrolling="no" title="Embedded DrawSQL IFrame" frameborder="0" src="https://drawsql.app/teams/brintons-team/diagrams/multilayer/embed"></iframe>
 
 ### SQL Implimentation
 Currently, the data has not been implimenting into an SQL server.

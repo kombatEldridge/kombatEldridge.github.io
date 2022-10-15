@@ -30,7 +30,7 @@ Each experiment returns multiple arrays of data. From the inner and outer layer,
 Analyzing $78\times4 = 312$ columns of data can be cumberson. However, I am enrolled an a database systems class. Therefore, in an effort to kill two birds with one stone, we will create a database of all the datapoints. This method can be tough to initialize, but once the ball is rolling, a simple query for any combination of experimental parameters will yeild the data set we wish to analyze with eaze.
 
 ### Preprocessing
-We begin by proprocessing the raw data from the HPC to be better fit into some database managment software. The *txt* files from the research group were extracted from the HPC, organized in folders by experiment, combined for both inner sphere and outer sphere measurements, and then combined completely into one *txt* file containing rows for wavelength, $Q_{ext}$, $Q_{sca}$, $Q_{abs}$, $E^2$, and Experimental Parameters. All preprocessing was done through multiple *.py* scripts.
+We begin by proprocessing the raw data to be better fit into the *mySQLWorkbench* software. The *.txt* files from the research group were extracted from the HPC, organized in folders by experiment, combined for both inner sphere and outer sphere measurements, and then combined completely into one master *.txt* file containing rows for wavelength ($\lambda$), $Q_{ext}$, $Q_{sca}$, $Q_{abs}$, $E^2$, and experimental conditions. Finally, the master file was split into two files, one containing the results columns, and the other containing the experimental conditions. Both contain a column for the expID which is the foreign key for the results table referencing the conditions table where it is the primary key. All preprocessing was done through multiple *.py* scripts.
 
 ### SQL Schema
 Our schema is a simple one. We have the option to track more meta data about our experiments (who ran it, when it was ran, configuration file, etc.), but they are not important to our analysis. Perhaps I will add this capability in the future.
@@ -38,7 +38,22 @@ Our schema is a simple one. We have the option to track more meta data about our
 <iframe width="100%" height="500px" style="box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); border-radius:15px;" allowtransparency="true" allowfullscreen="true" scrolling="no" title="Embedded DrawSQL IFrame" frameborder="0" src="https://drawsql.app/teams/brintons-team/diagrams/multilayer/embed"></iframe>
 
 ### SQL Implimentation
-Currently, the data has not been implimenting into an SQL server.
+The two text files produced from the preprocessing contain the data for the two tables in the database. I used the *mySQLWorkbench* upload wizard. Now, the two tables are in the database and the tables have been initialized to related to one another.
+
+---
+
+## Future Work
+
+### Deliverables
+Next month, I plan on testing the database with my deliverables from the proposal. Below is the original list of deliverables. I expect that things will go well.
+
+1. Retrieve all data points of type \textit{x} given $n$ experimental parameters $[a_1, a_2, a_3, ..., a_n]$. For example, the database is able to return a matrix of data after a user desires to compare the $Q_{ext}$ data points of all experiments with a Au core size $= 5$ nm. However, we also expect the database to handle data requests with multiple data point types and multiple experimental parameters.
+2. Add additional data points after a new experiment has been run. We expect to compile more data from future experiments and would like to add them to the database.
+3. This is just an idea, but it would be ideal to have the database do some preprocessing on the raw data files. However, right now, the user is responsible for the preprocessing.
+\end{enumerate}
+
+### Jupyter Notebook Implementation
+All research analysis is done on a Jupyter Notebook server hosted on the HPC. Ideally, I am able to connect the mySQL server to a Jupyter Notebook in order to be an interface of retrieval (Deliverable 1) and preprocessing (Deliverable 3).
 
 ---
 

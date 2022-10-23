@@ -16,7 +16,7 @@ Mayavi seeks to provide easy and interactive visualization of 3D data.
 
 It provides a user interface that allows for interaction with the data visualization details. However, it can also be easily implimented into a python script that runs the UI with some saved settings. This following terminal command opens the mayavi client with the python script (where the `-x` switch lets mayavi know you are passing a python script). If you do not want to have the mayavi client open and instead have the processing happen off screen, we add the `-o` switch.
 
-```
+```py
 $ mayavi2 -x test.py -o
 ```
 
@@ -24,64 +24,64 @@ If you have multiple datasets needing to be processed in the same manner, this m
 
 ## Python Script
 First, you need to import the off screen version of the mayavi api. Use the commented version if you want the on screen version.
-```
+```py
 from mayavi.api import OffScreenEngine
 # from mayavi.api import Engine
 ```
 
 Next, we import the vtk/vtr reader. If your vtk/vtr file is an older binary version, use the commented line.
-```
+```py
 from mayavi.sources.api import VTKXMLFileReader
 # from mayavi.sources.api import VTKFileReader
 ```
 
 This last import gives access to the graphing module. Our files contain 3D information, but for our research purposes, we only want a 2D contour plane.
-```
+```py
 from mayavi.modules.contour_grid_plane import ContourGridPlane
 ```
 
 Now create the MayaVi engine and start it.
-```
+```py
 engine = OffScreenEngine()
 engine.start()
 scene = engine.new_scene()
 ```
 
 We read in the vtk/vtr file and add the file source.
-```
+```py
 reader = VTKXMLFileReader()
 reader.initialize("Esq_1.vtr")
 engine.add_source(reader)
 ```
 
 In order to create the contour grid module, we initialize it with its main command, and then add it to the engine (not the scene).
-```
+```py
 ContourGridPlane = ContourGridPlane()
 engine.add_module(ContourGridPlane)
 ```
 
 Now comes the settings I applied. Our data object (ContourGridPlane with the initialized `Esq_1.vtr`) has a width of 360 frames (derived from the size of the DDSCAT grid I imagine), so we place the frame in the middle (180).
-```
+```py
 ContourGridPlane.grid_plane.position = 180
 ```
 
 However, the frame needs the contour removed so we can see the nanoparticle and not the whole scene.
-```
+```py
 ContourGridPlane.enable_contours = False
 ```
 
 We then create a manager to apply some scene changes.
-```
+```py
 module_manager = engine.scenes[0].children[0].children[0]
 ```
 
 This sets the colormap look up table (lut) to binary. Other color options are [availible](https://docs.enthought.com/mayavi/mayavi/mlab_changing_object_looks.html).
-```
+```py
 module_manager.scalar_lut_manager.lut_mode = 'binary'
 ```
 
 We then set the color range to only represent values from 0 to 500. The default color range is insufficient.
-```
+```py
 module_manager.scalar_lut_manager.use_default_range = False
 module_manager.scalar_lut_manager.scalar_bar.position = [0.1 , 0.01]
 module_manager.scalar_lut_manager.scalar_bar.position2 = [0.8 , 0.17]
@@ -89,13 +89,13 @@ module_manager.scalar_lut_manager.data_range = [  0., 500.]
 ```
 
 We place the camera orthogonal to the the -x plane.
-```
+```py
 scene.scene.x_minus_view()
 ```
 
 
 Finally, we save the image created.
-```
+```py
 scene.scene.save_png("binary.png")
 ```
 
@@ -104,7 +104,7 @@ So, in all, the python script looks like this.
 <details>
   <summary>mayavi_image_creator.py</summary>
 
-    ```
+    ```py
     from mayavi.api import OffScreenEngine
     from mayavi.sources.api import VTKXMLFileReader
     from mayavi.modules.contour_grid_plane import ContourGridPlane
@@ -148,7 +148,7 @@ All of the `lamxxx` folders sit in the main job directory, where I placed the py
 ## Shell Script
 
 Basically, this shell script opens each `lamxxx` folder, copies the python script, and runs the mayavi command. For the HPC, the `module load openswr` loads the necessary modules for mayavi.
-```
+```sh
 #!/bin/bash
 
 for i in {300..1000..10}
@@ -166,7 +166,7 @@ done
 ## Post Processing Python Script
 
 This python script opens each `lamxxx` folder, takes the two images (I made one with the colormap Binary and another in the colormap Copper), places them in the parent director in a folder named `esqPictures`, and renames them by the folder they came from.
-```
+```py
 import os
 
 pwd = os.getcwd()
@@ -187,7 +187,7 @@ for folder in folders:
 Finally, once all the images are loaded into one folder, I have the script add some details to the images like the wavelength and the scale (you can also add a scale to the mayavi python script, but it messes up some formatting), and then it creates a gif of all the images. Some positioning of the labels and images will need to be changed depending on resolution of the mayavi output images and the scale images.
 
 The font file `cmunrm.ttf` of the text in the image needs to be included in the same folder the python script reads in. Other files include the scale images.
-```
+```py
 import imageio.v2 as imageio
 from PIL import Image, ImageFont, ImageDraw 
 

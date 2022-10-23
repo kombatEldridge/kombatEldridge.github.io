@@ -265,5 +265,5 @@ for root, dirs, files in os.walk("".join([pwd, "/esqPictures"]), topdown=False):
 After that, here is an example of my results!
 
 <p align="center" width="100%">
-    <img width="50%" src="">
+    <img width="50%" src="https://github.com/kombatEldridge/kombatEldridge.github.io/blob/8405ac00d8c49f660dbe0f3c3db27e54237b167a/pictures/10nm%20Gap_copper.gif">
 </p>

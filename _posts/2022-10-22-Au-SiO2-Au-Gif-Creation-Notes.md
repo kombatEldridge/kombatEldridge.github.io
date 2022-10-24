@@ -270,12 +270,12 @@ After that, here is an example of my results!
 
 <script type="text/javascript" src="./libgif.js"></script>
 
-<img src="/pictures/10nm_Gap_copper.gif" width="360" height="360" rel:auto_play="1" rel:rubbable="1" />
+<img src="/pictures/10nm_Gap_copper.gif" width="400" height="350" rel:auto_play="1" rel:rubbable="1" />
 
 <script type="text/javascript">
     $$('img').each(function (img_tag) {
         if (/.*\.gif/.test(img_tag.src)) {
-            var rub = new SuperGif({ gif: img_tag } );
+            var rub = new RubbableGif({ gif: img_tag } );
             rub.load(function(){
                 console.log('oh hey, now the gif is loaded');
             });

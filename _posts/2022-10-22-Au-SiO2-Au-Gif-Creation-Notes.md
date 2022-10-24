@@ -276,9 +276,7 @@ After that, here is an example of my results!
     $$('img').each(function (img_tag) {
         if (/.*\.gif/.test(img_tag.src)) {
             var rub = new RubbableGif({ gif: img_tag } );
-            rub.load(function(){
-                console.log('oh hey, now the gif is loaded');
-            });
+            rub.load();
         }
     });
 </script>

@@ -264,7 +264,7 @@ for root, dirs, files in os.walk("".join([pwd, "/esqPictures"]), topdown=False):
 
 After that, here is an example of my results!
 
-![gif](/pictures/10nm_Gap_copper.gif)
+<!-- ![gif](/pictures/10nm_Gap_copper.gif) -->
 
 
 
@@ -280,14 +280,3 @@ After that, here is an example of my results!
         }
     });
 </script>
-
-<img id="example1" src="/pictures/10nm_Gap_copper.gif" rel:auto_play="0" width="400" height="350" />
-<br>
-<a href="javascript:;" onmousedown="sup1.pause(); return false;">Pause</a> |
-<a href="javascript:;" onmousedown="sup1.play(); return false;">Play</a> |
-<a href="javascript:;" onmousedown="sup1.move_to(0); return false;">Restart</a> |
-<a href="javascript:;" onmousedown="sup1.move_relative(1); return false;">Step forward</a> |
-<a href="javascript:;" onmousedown="sup1.move_relative(-1); return false;">Step back</a>
-
-Example with rubbing and auto-play on
-<img id="example2" src="https://rawgit.com/buzzfeed/libgif-js/master/example_gifs/rub_test.gif" rel:auto_play="1" width="467" height="375" rel:rubbable="1" />

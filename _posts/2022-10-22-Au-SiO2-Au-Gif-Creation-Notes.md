@@ -265,3 +265,20 @@ for root, dirs, files in os.walk("".join([pwd, "/esqPictures"]), topdown=False):
 After that, here is an example of my results!
 
 ![gif](/pictures/10nm_Gap_copper.gif)
+
+
+
+<script type="text/javascript" src="./libgif.js"></script>
+
+<img src="/pictures/10nm_Gap_copper.gif" width="360" height="360" rel:auto_play="1" rel:rubbable="1" />
+
+<script type="text/javascript">
+    $$('img').each(function (img_tag) {
+        if (/.*\.gif/.test(img_tag.src)) {
+            var rub = new SuperGif({ gif: img_tag } );
+            rub.load(function(){
+                console.log('oh hey, now the gif is loaded');
+            });
+        }
+    });
+</script>

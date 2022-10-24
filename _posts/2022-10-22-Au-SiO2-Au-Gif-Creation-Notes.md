@@ -270,7 +270,7 @@ After that, here is an example of my results!
 
 <script type="text/javascript" src="./libgif.js"></script>
 
-<img src="/pictures/10nm_Gap_copper.gif" width="400" height="350" rel:auto_play="1" />
+<img src="/pictures/10nm_Gap_copper.gif" width="400" height="350" rel:auto_play="0" />
 
 <script type="text/javascript">
     $$('img').each(function (img_tag) {

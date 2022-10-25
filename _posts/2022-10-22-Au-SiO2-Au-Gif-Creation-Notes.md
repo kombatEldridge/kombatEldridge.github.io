@@ -264,6 +264,7 @@ for root, dirs, files in os.walk("".join([pwd, "/esqPictures"]), topdown=False):
 
 After that, here is an example of my results!
 
-<!-- ![gif](/pictures/10nm_Gap_copper.gif) -->
-
-![mov](/pictures/10nm_Gap_copper.mp4)
+<p align="center" width="100%">
+    <video src="https://user-images.githubusercontent.com/90061933/197788437-c67d1df6-aefe-4e2f-b595-75ef8e797b4d.mp4" controls="controls">
+    </video>
+</p>

@@ -264,7 +264,20 @@ for root, dirs, files in os.walk("".join([pwd, "/esqPictures"]), topdown=False):
 
 After that, here is an example of my results!
 
+![gif](/pictures/10nm_Gap_copper.gif)
+
+Here is a scrubbable `.mp4` version of the gif.
+
 <p align="center" width="100%">
     <video src="https://user-images.githubusercontent.com/90061933/197788437-c67d1df6-aefe-4e2f-b595-75ef8e797b4d.mp4" controls="controls">
     </video>
 </p>
+
+
+## To do list:
+
+I would like to make the Mayavi scripts runnable on the HPC, but right now, an error occurs on the HPC side of things that is preventing me from submitting the whole script as an SBATCH.
+
+If I can have this run on HPC, I would like to increase the definition of these images. Right now, 400px x 350px isn't cutting edge.
+
+Ideally I figure out a way to have the scubber run on a gif and not a converted mp4. Just personal preference.

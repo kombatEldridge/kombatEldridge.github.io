@@ -266,17 +266,4 @@ After that, here is an example of my results!
 
 <!-- ![gif](/pictures/10nm_Gap_copper.gif) -->
 
-
-
-<script type="text/javascript" src="./libgif.js"></script>
-
-<img src="/pictures/10nm_Gap_copper.gif" width="400" height="350" rel:auto_play="0" />
-
-<script type="text/javascript">
-    $$('img').each(function (img_tag) {
-        if (/.*\.gif/.test(img_tag.src)) {
-            var rub = new RubbableGif({ gif: img_tag } );
-            rub.load();
-        }
-    });
-</script>
+![mov](/pictures/10nm_Gap_copper.mp4)

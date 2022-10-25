@@ -263,8 +263,10 @@ for root, dirs, files in os.walk("".join([pwd, "/esqPictures"]), topdown=False):
 ```
 
 After that, here is an example of my results!
-
-![gif](/pictures/10nm_Gap_copper.gif)
+<p align="center" width="100%">
+    <img src="/pictures/10nm_Gap_copper.gif">
+    </img>
+</p>
 
 Here is a scrubbable `.mp4` version of the gif.
 
@@ -276,8 +278,10 @@ Here is a scrubbable `.mp4` version of the gif.
 
 ## To do list:
 
-I would like to make the Mayavi scripts runnable on the HPC, but right now, an error occurs on the HPC side of things that is preventing me from submitting the whole script as an SBATCH.
+- I would like to make the Mayavi scripts runnable on the HPC, but right now, an error occurs on the HPC side of things that is preventing me from submitting the whole script as an SBATCH.
 
-If I can have this run on HPC, I would like to increase the definition of these images. Right now, 400px x 350px isn't cutting edge.
+- If I can have this run on HPC, I would like to increase the definition of these images. Right now, 400px x 350px isn't cutting edge.
 
-Ideally I figure out a way to have the scubber run on a gif and not a converted mp4. Just personal preference.
+- Ideally I figure out a way to have the scubber run on a gif and not a converted mp4. Just personal preference.
+
+- It would be nice to have an arrow scroll on the scale of the gif to show the highest intensity of that frame.

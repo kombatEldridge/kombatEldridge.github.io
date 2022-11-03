@@ -14,7 +14,7 @@ In joining with the Freed-Hardeman University Computational Chemistry research g
 # Section 1: Job Submission
 ## Step 1: Preparing the Shape File
 We begin by preparing the shape file to describe the structure to the DDSCAT program. This preparation is complicated for a multi-layered, multi-materialed sphere, so we use Dr. Elise Chaffin's modified shape program (that originally produced nanostar shape files). Through this step process, we will gather a list of all files required for this process.
-```
+```sh
 > ./nanostar3
 ```
 Note: inputs ask for diameter, but you should put in radii in $10\, \times$ nanometers (ex. an outer sphere with a $25nm$ radius is entered as $250$).
@@ -28,14 +28,14 @@ Before we set up the `ddscat.par` file, we need to import any dielectric text fi
 
 ## Step 3: DDSCAT Set Up
 When we run the ddscat job, we give it a file containing instructions on how to run our job. The `ddscat.par` file contains a lot of lines, but we are only interested in a few. You should copy someone's `ddscat.par` file into your directory and run the following command to begin editing (or use another editor if you prefer):
-```
+```sh
 > emacs ddscat.par
 ```
 
 We are interested in the following sections:
 
 This portion contains the reference to the dielectric files. Make sure you have these files in the same directory as the `ddscat.par` file you are editing now and that they are spelled correctly here.
-```
+```sh
 3         = NCOMP = number of dielectric materials
 'Au_diel.tab' = file with refractive index 1
 'SiO2_diel.tab' = file with refractive index 2
@@ -43,7 +43,7 @@ This portion contains the reference to the dielectric files. Make sure you have 
 ```
 
 This effective radii section must contain the correct value. To calculate this value, you find the total radius of the sphere and convert it to microns (micrometers). In this snippet, the radius is $25nm$ = $0.0250 \mu m$
-```
+```sh
 '**** Effective Radii (micron) **** '
 0.0250 0.0250 1 'LIN' = eff. radii (first, last, how many, how=LIN,INV,LOG)
 ```
@@ -54,7 +54,7 @@ In order to exit the emacs editor, hold CTRL and type x then c (C-x C-c). This e
 Now, we are ready almost ready for our first job! However, we need to tell HPC how we want our job ran. We use the `submit_varylamdaddscatnew_array.sh` script. The following changes need to be made to this script:
 
 We need to change the array values to whatever our desired wavelength range is. Here, we are designating our job to run from wavelength $400nm$ to $900nm$ with steps of $10nm$.
-```
+```sh
 > emacs submit_varylamdaddscatnew_array.sh
 
 #!/usr/bin/csh
@@ -69,12 +69,12 @@ We need to change the array values to whatever our desired wavelength range is. 
 ```
 
 Finally, we are ready to run the first job with the following command:
-```
+```sh
 > sbatch submit_varylamdaddscatnew_array.sh
 ```
 
 If you are curious about your job's progress, type:
-```
+```sh
 > squeue | grep <your_username>
 ```
 # Section 2: Post Processing
@@ -87,13 +87,13 @@ While your files are running, you can prepare the post processing scripts.
 The first of which is the `ddpostprocess_radial.par` that sits in your **files** directory.
 
 Here, we need just need to edit the radius at which the Near Field is measured. We standardly measure NF at $1nm$ off the surface. For a sphere of radius $25nm$ we measure NF at $0.025\mu m + 0.001\mu m = 0.0260\mu m$
-```
+```sh
 0.0  0.0  0.0  0.0260      = xorig(1), yorig(1), zorig(1), Rsurf(1) in physical units
 ```
 
 ### submit_ddpost_radial2_EXTNF_multi.sh
 In order to submit the post processing file, we edit the `submit_ddpost_radial2_EXTNF_multi.sh` file. Make sure to have the same array here as you did for [Step 4](#step-4-sbatch-preparation-and-execution).
-```
+```sh
 > emacs submit_ddpost_radial2_EXTNF_multi.sh 
 
 #!/usr/bin/sh
@@ -108,13 +108,13 @@ In order to submit the post processing file, we edit the `submit_ddpost_radial2_
 ```
 
 Once the `ddscat.par` job is finished, you can execute this file using the following command:
-```
+```sh
 > sbatch submit_ddpost_radial2_EXTNF_multi.sh
 ```
 
 ### average_Esphere_python3.py
 Lastly, once the `submit_ddpost_radial2_EXTNF_multi.sh` jobs are done, we then need to extract the data points from the individual **lam_** folders. We extract the NF data using `average_Esphere_python3.py` making sure that the start, stop, and step are the same as our job's specifications.
-```
+```sh
 > emacs average_Esphere_python3.py
 
 ...
@@ -125,12 +125,12 @@ step=10
 ```
 
 Then execute the script:
-```
+```sh
 > python average_Esphere_python3.py
 ```
 ### average_EXTABS_sphere_python3.py
 Similarly, we need to edit `average_EXTABS_sphere_python3.py` to add the correct start, stop, and step.
-```
+```sh
 > emacs average_EXTABS_sphere_python3.py
 
 ...
@@ -141,7 +141,7 @@ step=10
 ```
 
 Then execute the script:
-```
+```sh
 > python average_EXTABS_sphere_python3.py
 ```
 
@@ -149,7 +149,7 @@ Then execute the script:
 You will be running the same post processing scripts next chapter, and they will output files with the same name (which will overwrite the ones you have just created).
 
 Therefore, we need to rename these files to give them a more descriptive name:
-```
+```sh
 > mv average_Esphere.txt outer_sphere_average_Esphere.txt
 > mv average_EXTABS_sphere.txt outer_sphere_average_EXTABS_sphere.txt
 ```
@@ -158,7 +158,7 @@ Therefore, we need to rename these files to give them a more descriptive name:
 This step is optional, but it is nice to consolidate the columns in the two outfiles that we actually use in analysis into one file. We use a simple script that accomplishes this task: `combineEsphereEXTABS.py`. This script does not need to be edited unless your directory is not of the format `xcore/ynm-Au_znm-SiO2/`. In that case, just comment out the lines indicated in the script.
 
 Then execute the script:
-```
+```sh
 > python combineEsphereEXTABS.py
 ```
 
@@ -168,14 +168,14 @@ Then execute the script:
 ## Step 1: ddpostprocessing editing
 
 In order to take measurements now at the inner sphere's surface, we need to change the radius at which the data is collected. To do that, we need to edit `ddpostprocess_radial.par` and reduce the radius. Here, our core has a radius of $10nm$, so we measure NF at $0.011\mu m$.
-```
+```sh
 > emacs ddpostprocess_radial.par
 
 0.0  0.0  0.0  0.0110      = xorig(1), yorig(1), zorig(1), Rsurf(1) in physical units
 ```
 
 The submission of this change is simple:
-```
+```sh
 > sbatch submit_ddpost_radial2_EXTNF_multi.sh
 ```
 
@@ -183,7 +183,7 @@ The submission of this change is simple:
 
 This step is the same as Steps 5-7. Make sure that your output files have already been renamed, and then we can run the following scripts:
 
-```
+```sh
 > python average_Esphere_python3.py
 > python average_EXTABS_sphere_python3.py
 > mv average_Esphere.txt inner_sphere_average_Esphere.txt

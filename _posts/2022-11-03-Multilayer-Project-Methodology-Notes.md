@@ -54,7 +54,7 @@ In order to exit the emacs editor, hold CTRL and type x then c (C-x C-c). This e
 Now, we are ready almost ready for our first job! However, we need to tell HPC how we want our job ran. We use the `submit_varylamdaddscatnew_array.sh` script. The following changes need to be made to this script:
 
 We need to change the array values to whatever our desired wavelength range is. Here, we are designating our job to run from wavelength $400nm$ to $900nm$ with steps of $10nm$.
-```sh
+```powershell
 > emacs submit_varylamdaddscatnew_array.sh
 
 #!/usr/bin/csh

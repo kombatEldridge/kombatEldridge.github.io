@@ -54,7 +54,7 @@ In order to exit the emacs editor, hold CTRL and type x then c (C-x C-c). This e
 Now, we are ready almost ready for our first job! However, we need to tell HPC how we want our job ran. We use the `submit_varylamdaddscatnew_array.sh` script. The following changes need to be made to this script:
 
 We need to change the array values to whatever our desired wavelength range is. Here, we are designating our job to run from wavelength $400nm$ to $900nm$ with steps of $10nm$.
-```sh
+```
 > emacs submit_varylamdaddscatnew_array.sh
 
 #!/usr/bin/csh
@@ -190,17 +190,49 @@ This step is the same as Steps 5-7. Make sure that your output files have alread
 > mv average_EXTABS_sphere.txt inner_sphere_average_EXTABS_sphere.txt
 > python combineEsphereEXTABS.py
 ```
+---
+# **Chapter 3: Peak Refinement (Optional)**
+## Section 1: Refinement Discernemnt
+When a job is completely finished, sometimes the interval in which you ran the job is insufficient to describe a peak that rapidly changes:
+![]()
+
+I will usually run a second set of jobs that lower the wavelength interval and isolates the peak.
+
+## Section 2: Process Notes
+Here is the list of steps you'll need to accomplish to refine a peak in the data.
+
+### Step 1: Array Modification
+In the following files, you will need to change the array to the desired refined peak:
+- [submit_varylamdaddscatnew_array.sh](#step-4-sbatch-preparation-and-execution)
+- [submit_ddpost_radial2_EXTNF_multi.sh](#submit_ddpost_radial2_extnf_multish)
+- [average_Esphere_python3.py](#average_esphere_python3py)
+- [average_EXTABS_sphere_python3.py](#average_extabs_sphere_python3py)
+
+After changing the arrays, follow the steps above to run the ddscat job and then the ddpostprocess job.
+
+### Step 2: Post Processing Modification
+Post processing is almost the same as the two previous chapters, but you will need to be careful of the names of the text output files. Therefore, I recommend renaming them using the following commands: 
+```sh
+> mv average_Esphere.txt outer_sphere_average_Esphere_refined.txt
+> mv average_EXTABS_sphere.txt outer_sphere_average_EXTABS_sphere_refined.txt
+```
+
+### Step 3: Combining the Refined and Original Data
+Finally, use the the `addRefinedPeaks.py` to combine the two data sets together. It will ask you for the path of the two text files to be combined.
+
+### Step 4: Combine Outputs Again
+Execute the script:
+```sh
+> python combineEsphereEXTABS.py
+```
 
 ---
-# **Chapter 3: Image Creation (Optional)**
+# **Chapter 4: Image Creation (Optional)**
 ## Section 1: Mayavi Images
 Refer to [this blog](https://kombateldridge.github.io/2022/10/22/Au-SiO2-Au-Gif-Creation-Notes.html).
 
 ## Section 2: Spectra Images
 Currently, I am using a Jupyter Notebook on the HPC ([Tutorial](https://kombateldridge.github.io/2022/07/01/Jupyter-Notebook-On-HPC.html)) to manually pull all the data into graphs of my choosing. However, I have plans to make this process simpler by using a database containing the data and the metadata about each job and a connection to a Jupyter Notebook coded for image processing. That way, you can command (via SQL) what data you want to compare and have the Notebook visualize the data quickly. Here is a blog I am keeping updated on my progress: [Au-SiO2-Au Multilayered Nanoparticle Project](https://kombateldridge.github.io/2022/09/09/Au-SiO2-Au-Multilayer-Project-Update-1.html).
-
-
-
 
 # ***File Structure***:
 - Job Directory (named `/xcore/ynm-Au_znm-SiO2/`)
@@ -209,6 +241,7 @@ Currently, I am using a Jupyter Notebook on the HPC ([Tutorial](https://kombatel
   - [average_Esphere_python3.py](#average_esphere_python3py)
   - [average_EXTABS_sphere_python3.py](#average_extabs_sphere_python3py)
   - [combineEsphereEXTABS.py](#step-7-combine-output-files)
+  - [addRefinedPeaks.py](#step-3-combining-the-refined-and-original-data)
   - `Files` Directory
     - [nanostar3.sh](#step-1-preparing-the-shape-file)
     - [Au_diel.tab](#step-2-dielectric-files)

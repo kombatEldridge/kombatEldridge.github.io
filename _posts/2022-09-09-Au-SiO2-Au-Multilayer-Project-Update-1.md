@@ -51,7 +51,7 @@ Finally, we begin to interact with the data. The aim is to gather data from the 
 The `.py` script asks the user for multiple pieces of information to locate the desired information. Below, I will walk through each step.
 
 The first question asks the user for the amount of WHERE clauses they will want to add to the overall SQL statement. If a user wants only the data from jobs that had a coreSize of 5nm, they will enter in the indented lines (>). A list of all the conditional settings are given for reference.
-```
+```powershell
 How many WHERE clauses do you want to add?
 > 1
 
@@ -66,7 +66,7 @@ Please enter your WHERE clause (ex: "coreSize = 5"):
 ```
 
 After the script compiles an SQL command using this information, it asks the user what attributes he or she wants graphed.
-```
+```powershell
 How many series do you want to map?
 > 1
 

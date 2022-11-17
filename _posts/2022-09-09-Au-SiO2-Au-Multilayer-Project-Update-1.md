@@ -1,10 +1,15 @@
 # Au - SiO<sub>2</sub> - Au Multilayered Nanoparticle Project
 
-In joining with the Freed-Hardeman University Computational Chemistry research group, my collegues and I are investigating the interaction of a multilayered Gold (Au) nanoparticle with light of varying wavelengths. Specifically, we are examining a nanoparticle with a Au core and a Au shell separated by a layer of glass (SiO<sub>2</sub>). 
+Recently, the attention of some computational chemists has been turning to nanoparticle chemistry. In my lab, we are investigating how a multilayered nanoparticle will interact with light.
+
 
 <p align="center" width="100%">
     <img width="50%" src="https://github.com/kombatEldridge/kombatEldridge.github.io/blob/main/pictures/AuSiO2AuDiagram.png?raw=true">
 </p>
+
+With the increase of abilities in computational chemistry, one can find vast amounts of information on his or her hard drive with minimal effort. Hours spent in the lab carefully designing experiments and producing substances for testing are reduced to a couple of scripts. That being said, handling the data from computational experiments can become cumbersome if the proper machinery isn't in place. Thus, the aim of this project is to create a machine to handle data from the recent multilayered nanoparticle jobs.  
+
+The appropriate machine would be double edged: the first being the database itself, and the second would act as a post-processing application to interface with different users. The application would need to connect to the database, call upon different tables depending on what the user specifies, and display the relevant information. Here, I will show the creation of said database and the post-processing application. 
 
 
 ---
@@ -21,39 +26,73 @@ Using the DDSCAT program on the University of Memphis's HPC, the research group 
 A table of all experimental conditions computed can be found at the end of the page. Each experiment computed results for both the inner layer and outer layer.
 
 ### Dependent Variables
-Each experiment returns multiple arrays of data. From the inner and outer layer, we collect data in the form of $Q_{ext}$, $Q_{sca}$, $Q_{abs}$, and $E^2$ for a list of wavelengths (usually 400nm to 1000nm). These measurements are unitless.
+Each experiment returns multiple arrays of data. From the inner and outer layer, we collect data in the form of Q<sub>ext</sub>, Q<sub>sca</sub>, Q<sub>abs</sub>, and E<sup>2</sup> for a list of wavelengths (usually 400nm to 1000nm). These measurements are unitless.
 
 ---
 
-## Analytical Procedure
+## Design
 
 Analyzing $78\times4 = 312$ columns of data can be cumberson. However, I am enrolled an a database systems class. Therefore, in an effort to kill two birds with one stone, we will create a database of all the datapoints. This method can be tough to initialize, but once the ball is rolling, a simple query for any combination of experimental parameters will yeild the data set we wish to analyze with eaze.
 
 ### Preprocessing
-We begin by proprocessing the raw data to be better fit into the *mySQLWorkbench* software. The *.txt* files from the research group were extracted from the HPC, organized in folders by experiment, combined for both inner sphere and outer sphere measurements, and then combined completely into one master *.txt* file containing rows for wavelength ($\lambda$), $Q_{ext}$, $Q_{sca}$, $Q_{abs}$, $E^2$, and experimental conditions. Finally, the master file was split into two files, one containing the results columns, and the other containing the experimental conditions. Both contain a column for the expID which is the foreign key for the results table referencing the conditions table where it is the primary key. All preprocessing was done through multiple *.py* scripts.
+The raw data needs pre-processing after the experiment itself is finished. We begin by processing the raw data to be better fit into the mySQL database. The `.txt` files from the research group were extracted from the HPC, organized in folders by experiment, combined for both inner sphere and outer sphere measurements, and then combined completely into one master `.txt` file containing rows for wavelength ($\lambda$), Q$_{ext}$, Q$_{sca}$, Q$_{abs}$, E$^{2}$, and experimental conditions. 
+
+Finally, the master file was split into two files, one containing the results columns, and the other containing the experimental conditions. Both contain a column for the expID which is the foreign key for the results table referencing the conditions table where it is the primary key. In order for the `.txt` files to be added by command into the database, we translated the `.txt` information into `.csv` format. All pre-processing was done through multiple `.py` scripts.
+
 
 ### SQL Schema
-Our schema is a simple one. We have the option to track more meta data about our experiments (who ran it, when it was ran, configuration file, etc.), but they are not important to our analysis. Perhaps I will add this capability in the future.
+Now that we have two `.csv` files containing correctly formatted data, we initialize the database by creating two tables: Results and Conditions. The `.csv` files are then imported. Below is the schema for the database. After learning about database systems, the pre-processing procedure prepared the project's data, so this portion of the project was trivial.
 
 <iframe width="100%" height="500px" style="box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); border-radius:15px;" allowtransparency="true" allowfullscreen="true" scrolling="no" title="Embedded DrawSQL IFrame" frameborder="0" src="https://drawsql.app/teams/brintons-team/diagrams/multilayer/embed"></iframe>
 
 ### SQL Implimentation
-The two text files produced from the preprocessing contain the data for the two tables in the database. I used the *mySQLWorkbench* upload wizard. Now, the two tables are in the database and the tables have been initialized to related to one another.
+Finally, we begin to interact with the data. The aim is to gather data from the database on the command of the user and graph the data. Ideally, this is a closed system in order to increase its user friendliness. Therefore, a `.py` script was developed for this purpose. However, since the database is hosted on my local machine, the database would need to be ported to some online network if I wanted to allow other users access.
 
----
+The `.py` script asks the user for multiple pieces of information to locate the desired information. Below, I will walk through each step.
 
-## Future Work
+The first question asks the user for the amount of WHERE clauses they will want to add to the overall SQL statement. If a user wants only the data from jobs that had a coreSize of 5nm, they will enter in the indented lines (>). A list of all the conditional settings are given for reference.
+```
+How many WHERE clauses do you want to add?
+> 1
 
-### Deliverables
-Next month, I plan on testing the database with my deliverables from the proposal. Below is the original list of deliverables. I expect that things will go well.
+0:	expID
+1:	coreSize
+2:	sio2Size
+3:	shellSize
+4:	outerBoolean
 
-1. Retrieve all data points of type \textit{x} given $n$ experimental parameters $[a_1, a_2, a_3, ..., a_n]$. For example, the database is able to return a matrix of data after a user desires to compare the $Q_{ext}$ data points of all experiments with a Au core size $= 5$ nm. However, we also expect the database to handle data requests with multiple data point types and multiple experimental parameters.
-2. Add additional data points after a new experiment has been run. We expect to compile more data from future experiments and would like to add them to the database.
-3. This is just an idea, but it would be ideal to have the database do some preprocessing on the raw data files. However, right now, the user is responsible for the preprocessing.
-\end{enumerate}
+Please enter your WHERE clause (ex: "coreSize = 5"):
+> coreSize = 5 
+```
 
-### Jupyter Notebook Implementation
-All research analysis is done on a Jupyter Notebook server hosted on the HPC. Ideally, I am able to connect the mySQL server to a Jupyter Notebook in order to be an interface of retrieval (Deliverable 1) and preprocessing (Deliverable 3).
+After the script compiles an SQL command using this information, it asks the user what attributes he or she wants graphed.
+```
+How many series do you want to map?
+> 1
+
+0:	expID
+1:	lambda
+2:	qEXT
+3:	qSCA
+4:	qABS
+5:	eSQU
+
+Please select index of series:
+> 3
+```
+Finally, all information has been provided, and the script will visualize the selected data using the ` Matplotlib} python package.
+
+### Evaluation / Analysis / Results
+
+After development of the database and accompanying post-processing script, we are able to produce images of the spectra we ask for. Below is a sample spectra when the above code is executed.
+
+
+
+
+The script is capable of producing graphs on command of every combination of experiments and output parameters. Given the slew of `.py` scripts to pre-process the data, adding more experiments to the database is simple.
+
+If this database were to grow to the point where storage was a concern, the extraction of experimental conditions into its own table reduces the hard drive size by reducing duplicate information. 
+
 
 ---
 

@@ -86,7 +86,8 @@ Finally, all information has been provided, and the script will visualize the se
 
 After development of the database and accompanying post-processing script, we are able to produce images of the spectra we ask for. Below is a sample spectra when the above code is executed.
 
-
+![Figure_1](https://user-images.githubusercontent.com/90061933/202374040-641000ad-4cec-4fe0-9386-6d60bdaf67b5.png)
+![Figure_12](https://user-images.githubusercontent.com/90061933/202374046-92d2bec7-530a-4e4f-8e94-0616e8a81641.png)
 
 
 The script is capable of producing graphs on command of every combination of experiments and output parameters. Given the slew of `.py` scripts to pre-process the data, adding more experiments to the database is simple.

@@ -10,9 +10,9 @@ In joining with the Freed-Hardeman University Computational Chemistry research g
     <img width="50%" src="https://github.com/kombatEldridge/kombatEldridge.github.io/blob/main/pictures/AuSiO2AuDiagram.png?raw=true">
 </p>
 
-# **Chapter 1: Outer Sphere**
-# Section 1: Job Submission
-## Step 1: Preparing the Shape File
+## **Chapter 1: Outer Sphere**
+## Section 1: Job Submission
+# Step 1: Preparing the Shape File
 We begin by preparing the shape file to describe the structure to the DDSCAT program. This preparation is complicated for a multi-layered, multi-materialed sphere, so we use Dr. Elise Chaffin's modified shape program (that originally produced nanostar shape files). Through this step process, we will gather a list of all files required for this process.
 ```sh
 > ./nanostar3
@@ -23,10 +23,10 @@ Lattice spacing is typically $1$. Enter three lines of $1$ to give value to the 
 
 This script will produce a `shape.dat` file.
 
-## Step 2: Dielectric Files
+# Step 2: Dielectric Files
 Before we set up the `ddscat.par` file, we need to import any dielectric text files we will be using for our layers. In this project, we need two: `Au_diel.tab` and `SiO2_diel.tab`. These are tab separated files and can be found in many directories. The dielectric files for this project are sourced from Johnson and Christy 1972 and I. H. Malitson 1965 respectively.
 
-## Step 3: DDSCAT Set Up
+# Step 3: DDSCAT Set Up
 When we run the ddscat job, we give it a file containing instructions on how to run our job. The `ddscat.par` file contains a lot of lines, but we are only interested in a few. You should copy someone's `ddscat.par` file into your directory and run the following command to begin editing (or use another editor if you prefer):
 ```sh
 > emacs ddscat.par
@@ -50,7 +50,7 @@ This effective radii section must contain the correct value. To calculate this v
 
 In order to exit the emacs editor, hold CTRL and type x then c (C-x C-c). This exits and askes you to save as well.
 
-## Step 4: SBATCH Preparation and Execution
+# Step 4: SBATCH Preparation and Execution
 Now, we are ready almost ready for our first job! However, we need to tell HPC how we want our job ran. We use the `submit_varylamdaddscatnew_array.sh` script. The following changes need to be made to this script:
 
 We need to change the array values to whatever our desired wavelength range is. Here, we are designating our job to run from wavelength $400nm$ to $900nm$ with steps of $10nm$.
@@ -77,12 +77,12 @@ If you are curious about your job's progress, type:
 ```sh
 > squeue | grep <your_username>
 ```
-# Section 2: Post Processing
-## Step 5: Post Processing Scripts
+## Section 2: Post Processing
+# Step 5: Post Processing Scripts
 
 While your files are running, you can prepare the post processing scripts. 
 
-### ddpostprocess_radial.par
+# ddpostprocess_radial.par
 
 The first of which is the `ddpostprocess_radial.par` that sits in your **files** directory.
 
@@ -91,7 +91,7 @@ Here, we need just need to edit the radius at which the Near Field is measured. 
 0.0  0.0  0.0  0.0260      = xorig(1), yorig(1), zorig(1), Rsurf(1) in physical units
 ```
 
-### submit_ddpost_radial2_EXTNF_multi.sh
+# submit_ddpost_radial2_EXTNF_multi.sh
 In order to submit the post processing file, we edit the `submit_ddpost_radial2_EXTNF_multi.sh` file. Make sure to have the same array here as you did for [Step 4](#step-4-sbatch-preparation-and-execution).
 ```sh
 > emacs submit_ddpost_radial2_EXTNF_multi.sh 
@@ -112,7 +112,7 @@ Once the `ddscat.par` job is finished, you can execute this file using the follo
 > sbatch submit_ddpost_radial2_EXTNF_multi.sh
 ```
 
-### average_Esphere_python3.py
+# average_Esphere_python3.py
 Lastly, once the `submit_ddpost_radial2_EXTNF_multi.sh` jobs are done, we then need to extract the data points from the individual **lam_** folders. We extract the NF data using `average_Esphere_python3.py` making sure that the start, stop, and step are the same as our job's specifications.
 ```sh
 > emacs average_Esphere_python3.py
@@ -128,7 +128,7 @@ Then execute the script:
 ```sh
 > python average_Esphere_python3.py
 ```
-### average_EXTABS_sphere_python3.py
+# average_EXTABS_sphere_python3.py
 Similarly, we need to edit `average_EXTABS_sphere_python3.py` to add the correct start, stop, and step.
 ```sh
 > emacs average_EXTABS_sphere_python3.py
@@ -145,7 +145,7 @@ Then execute the script:
 > python average_EXTABS_sphere_python3.py
 ```
 
-## Step 6: Rename Output Files
+# Step 6: Rename Output Files
 You will be running the same post processing scripts next chapter, and they will output files with the same name (which will overwrite the ones you have just created).
 
 Therefore, we need to rename these files to give them a more descriptive name:
@@ -154,7 +154,7 @@ Therefore, we need to rename these files to give them a more descriptive name:
 > mv average_EXTABS_sphere.txt outer_sphere_average_EXTABS_sphere.txt
 ```
 
-## Step 7: Combine Output Files
+# Step 7: Combine Output Files
 This step is optional, but it is nice to consolidate the columns in the two outfiles that we actually use in analysis into one file. We use a simple script that accomplishes this task: `combineEsphereEXTABS.py`. This script does not need to be edited unless your directory is not of the format `xcore/ynm-Au_znm-SiO2/`. In that case, just comment out the lines indicated in the script.
 
 Then execute the script:
@@ -163,9 +163,9 @@ Then execute the script:
 ```
 
 ---
-# **Chapter 2: Inner Sphere**
-# Section 1: Job Submission
-## Step 1: ddpostprocessing editing
+## **Chapter 2: Inner Sphere**
+## Section 1: Job Submission
+# Step 1: ddpostprocessing editing
 
 In order to take measurements now at the inner sphere's surface, we need to change the radius at which the data is collected. To do that, we need to edit `ddpostprocess_radial.par` and reduce the radius. Here, our core has a radius of $10nm$, so we measure NF at $0.011\mu m$.
 ```sh
@@ -179,7 +179,7 @@ The submission of this change is simple:
 > sbatch submit_ddpost_radial2_EXTNF_multi.sh
 ```
 
-## Step 2: Create, Rename, and Combine Output Files
+# Step 2: Create, Rename, and Combine Output Files
 
 This step is the same as Steps 5-7. Make sure that your output files have already been renamed, and then we can run the following scripts:
 
@@ -191,17 +191,17 @@ This step is the same as Steps 5-7. Make sure that your output files have alread
 > python combineEsphereEXTABS.py
 ```
 ---
-# **Chapter 3: Peak Refinement (Optional)**
-## Section 1: Refinement Discernemnt
+## **Chapter 3: Peak Refinement (Optional)**
+# Section 1: Refinement Discernemnt
 When a job is completely finished, sometimes the interval in which you ran the job is insufficient to describe a peak that rapidly changes:
 ![]()
 
 I will usually run a second set of jobs that lower the wavelength interval and isolates the peak.
 
-## Section 2: Process Notes
+# Section 2: Process Notes
 Here is the list of steps you'll need to accomplish to refine a peak in the data.
 
-### Step 1: Array Modification
+# Step 1: Array Modification
 In the following files, you will need to change the array to the desired refined peak:
 - [submit_varylamdaddscatnew_array.sh](#step-4-sbatch-preparation-and-execution)
 - [submit_ddpost_radial2_EXTNF_multi.sh](#submit_ddpost_radial2_extnf_multish)
@@ -210,31 +210,38 @@ In the following files, you will need to change the array to the desired refined
 
 After changing the arrays, follow the steps above to run the ddscat job and then the ddpostprocess job.
 
-### Step 2: Post Processing Modification
+# Step 2: Post Processing Modification
 Post processing is almost the same as the two previous chapters, but you will need to be careful of the names of the text output files. Therefore, I recommend renaming them using the following commands: 
 ```sh
 > mv average_Esphere.txt outer_sphere_average_Esphere_refined.txt
 > mv average_EXTABS_sphere.txt outer_sphere_average_EXTABS_sphere_refined.txt
 ```
 
-### Step 3: Combining the Refined and Original Data
+# Step 3: Combining the Refined and Original Data
 Finally, use the the `addRefinedPeaks.py` to combine the two data sets together. It will ask you for the path of the two text files to be combined.
 
-### Step 4: Combine Outputs Again
+# Step 4: Combine Outputs Again
 Execute the script:
 ```sh
 > python combineEsphereEXTABS.py
 ```
 
 ---
-# **Chapter 4: Image Creation (Optional)**
-## Section 1: Mayavi Images
+## **Chapter 4: Image Creation (Optional)**
+# Section 1: Mayavi Images
 Refer to [this blog](https://kombateldridge.github.io/2022/10/22/Au-SiO2-Au-Gif-Creation-Notes.html).
 
-## Section 2: Spectra Images
+# Section 2: Spectra Images
 Currently, I am using a Jupyter Notebook on the HPC ([Tutorial](https://kombateldridge.github.io/2022/07/01/Jupyter-Notebook-On-HPC.html)) to manually pull all the data into graphs of my choosing. However, I have plans to make this process simpler by using a database containing the data and the metadata about each job and a connection to a Jupyter Notebook coded for image processing. That way, you can command (via SQL) what data you want to compare and have the Notebook visualize the data quickly. Here is a blog I am keeping updated on my progress: [Au-SiO2-Au Multilayered Nanoparticle Project](https://kombateldridge.github.io/2022/09/09/Au-SiO2-Au-Multilayer-Project-Update-1.html).
 
-# ***File Structure***:
+---
+## **Appendix 1: Au Shell Only (Optional)**
+In the process of writing the manuscript, we realized that we need some data on just a Au shell. I created five jobs, each having a shell of thickness 10nm at different distances (outer radius 22.5nm to 32.5nm in intervals of 2.5nm).
+
+To create these jobs, the `nanostar3.sh` file was used. The core layer, however, needed to be SiO2 instead of Au, so in the `ddscat.par` file, I changed the core refractive index 1 to be SiO2. The radius of the core was then set to 10nm in the `nanostar3.sh` script. This number should be arbitrary because the program should set the core and middle layer to the same marterial, causing it to be continuous.
+
+
+## ***File Structure***:
 - Job Directory (named `/xcore/ynm-Au_znm-SiO2/`)
   - [submit_varylamdaddscatnew_array.sh](#step-4-sbatch-preparation-and-execution)
   - [submit_ddpost_radial2_EXTNF_multi.sh](#submit_ddpost_radial2_extnf_multish)

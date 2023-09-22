@@ -43,4 +43,17 @@ There were moments during the drafting phase that I wanted to pass off the proje
 Now, I have finished what I hope is the last draft, and I hope we will send it in for review. I know that the process of submission review takes a long time and this is likely not the last time I make a draft of the paper. However, now that the 6th draft is complete, I have optimism. Its in the hands of my collegues and I am able to focus on other tasks like web development and my blog.
 
 ## Step 4: Manuscript Submission
-TBD.
+We submitted our manuscript on **April 7th, 2023** to the Journal of Physical Chemistry.
+
+On **May 9th, 2023**, we recieved our notes back on the manuscript with a rejection of publication. Our notes were not as substantial as I would have thought, but we were recommended to submit to a journal with *less* of an emphasis on impact. The reviewers did not see a great impact to the scientific community in our paper.
+
+After reworking the paper to emphasize the impact of our paper to the scientific body of knowledge, as well as addressing the issues the reviewers noted, we submitted our manuscript for its second round of review on **June 4th, 2023**. We had recently recieved a call for papers specific to nanoparticles from the Royal Society of Chemistry Nanoscale, so we submitted there.
+
+The call for papers had a due date of July 31st, so it seems that our paper wasn't assigned a peer reviewer until the first of August. You are able to see the progress of the paper on their website:
+
+* June 4th - submitted and given to an editor
+* August 1st - assigned a peer reviewer (or multiple)
+* August 19th - returned to the editor
+* August 23rd - assigned another peer reviewer (or multiple)
+
+This is where our paper is now, in peer reivew. As of today (September 21st), it has been in peer review for about a month now.

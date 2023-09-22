@@ -12,9 +12,12 @@ I suppose a dielectric response function could be found out of a bulk dye soluti
 
 Dr. Nascimento at the University of Memphis, who taught me electronic structure, knows theory and has a script that can take a molecule and calculate its polarizability $\alpha$. The DDSCAT program actually takes the dielectric fuction $\epsilon$ and transforms it into a polarizability internally. Because we cannot explicitly give DDSCAT $\alpha$ data of our dye, we convert it to $\epsilon$ using the following formula:
 
-![Polarizability to Dielectric](/pictures/polarizability.png)
+<img src="/pictures/polarizability.png" alt="drawing" width="200"/>
+<!-- ![Polarizability to Dielectric](/pictures/polarizability.png) -->
+
 
 Below is the derivation I made to easily convert between the two:
+
 ![Polarizability to Dielectric Proof](/pictures/polarizationproof.png)
 
 Now, we can use this proof to translate between Dr. N's polarizability code output and the DDSCAT dielectric input.

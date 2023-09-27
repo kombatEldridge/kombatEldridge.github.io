@@ -7,9 +7,7 @@ Once it is optimized, we then need to export the geometry as a `.xyz` file. On M
 
 ### Step 2: Directory Generation on HPC
 Copy `dirGeneration.sh` (shown below) to your research directory that you plan to store your dye molecule project. 
-<details>
-<summary>dirGeneration.sh</summary>
-<br>
+
 ```
 #!/bin/bash
 
@@ -55,7 +53,6 @@ echo "Directory for $molecule_name created with template files, and replacements
 echo "You will need to create an .xyz file detailing the coordinates of the atoms in your dye molecule."
 echo "We recommend using Avogadro2."
 ```
-</details>
 
 
 This code, once turned into an executable using `chmod +x dirGeneration.sh` and executed, will ask you for the name of your desired dye molecule and will generate a directory with all the required files for the project.

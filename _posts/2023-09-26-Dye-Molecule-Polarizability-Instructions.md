@@ -10,7 +10,7 @@ Copy `dirGeneration.sh` (shown below) to your research directory that you plan t
 <details>
 <summary>dirGeneration.sh</summary>
 <br>
-<code>
+```
 #!/bin/bash
 
 # Prompt the user for the molecule name
@@ -54,9 +54,9 @@ done
 echo "Directory for $molecule_name created with template files, and replacements completed."
 echo "You will need to create an .xyz file detailing the coordinates of the atoms in your dye molecule."
 echo "We recommend using Avogadro2."
-
-</code>
+```
 </details>
+
 
 This code, once turned into an executable using `chmod +x dirGeneration.sh` and executed, will ask you for the name of your desired dye molecule and will generate a directory with all the required files for the project.
 

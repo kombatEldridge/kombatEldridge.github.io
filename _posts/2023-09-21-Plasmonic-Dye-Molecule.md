@@ -10,17 +10,13 @@ When inputting a material into DDSCAT, all we are asked for is the dielectric re
 
 I suppose a dielectric response function could be found out of a bulk dye solution, but these moleucles are usually aqueous which would not accurately model the dye itself. Additionally, we may want to simulate one dye molecule on its own, and at the size of a dye moleucle, classical dielectrics would not hold. We need the *ab initio* dielectric response.
 
-Dr. Nascimento at the University of Memphis, who taught me electronic structure, knows theory and has a script that can take a molecule and calculate its polarizability $\alpha$. The DDSCAT program actually takes the dielectric fuction $\epsilon$ and transforms it into a polarizability internally. Because we cannot explicitly give DDSCAT $\alpha$ data of our dye, we convert it to $\epsilon$ using the following formula:
-
-<img src="/pictures/polarizability.png" alt="drawing" width="200" align="center"/>
-<!-- ![Polarizability to Dielectric](/pictures/polarizability.png) -->
-
-
-Below is the derivation I made to easily convert between the two:
+Dr. Nascimento at the University of Memphis, who taught me electronic structure, knows theory and has a script that can take a molecule and calculate its polarizability $\alpha$. The DDSCAT program actually takes the dielectric fuction $\epsilon$ and transforms it into a polarizability internally. Because we cannot explicitly give DDSCAT $\alpha$ data of our dye, we convert it to $\epsilon$. Below is the derivation I made to easily convert between the two:
 
 ![Polarizability to Dielectric Proof](/pictures/polarizationproof.png)
 
-Now, we can use this proof to translate between Dr. N's polarizability code output and the DDSCAT dielectric input.
+Now, we can use this proof to translate between Dr. Nascimento's polarizability code output and the DDSCAT dielectric input. 
+
+*As of now (10/03/2023), there is an issue with the polarizability to dielectric code. I suspect that because of the sheer magnitude of the d$^3$ factor, the original equation breaks down in applicability. Removing the constant $\frac{4\pi}{3d^3}$ would fix the magnitude issue, but the relationship between polarizability and dielectric is not linear, so removing this constant affects not only the intensity of the result, but the shape as well.* 
 
 ## Step 2: Shape File Generation
 Now, we must develop a plan as to how to simulate these two materials together. First, it is best if we ensure that our *ab initio* dye simulation is accurate. We should be able to simulate a solution of aqueous dye molecules in DDSCAT and measure their absorbance.

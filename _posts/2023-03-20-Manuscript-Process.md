@@ -1,5 +1,7 @@
 I started writing a manuscript for publication on the Mulitlayer project on December 10th, 2022. I had gone home for Christmas, and I had some time before the festivities started. Here is a retroactive timeline of my progress. 
 
+TLDR: You can find the publication here: (https://www.mdpi.com/2079-4991/13/21/2893)[https://www.mdpi.com/2079-4991/13/21/2893].
+
 ## Step 0: Data Collection & Preparation
 ### Collection
 Back in 2021, the Freed-Hardeman Computational Chemistry research group (in collab with Dr. Wang at the University of Memphis) started investigating layered nanoparticles. We were primarily interested in a Au core, a layer of SiO2, and another layer of Au. I was focused on completing my honors thesis on our previous work on heterodimers, so I wasn't terribly involved in the start of the project. 
@@ -55,5 +57,6 @@ The call for papers had a due date of July 31st, so it seems that our paper wasn
 * August 1st - assigned a peer reviewer (or multiple)
 * August 19th - returned to the editor
 * August 23rd - assigned another peer reviewer (or multiple)
+* September 26th - paper rejected
 
-This is where our paper is now, in peer reivew. As of today (September 21st), it has been in peer review for about a month now.
+Finally, after waiting the whole summer, we recieved some notes on the paper (which is good news dispite the rejection). We then made some edits, and submitted it to MDPI Nanomaterials. After a month of review and edits, we were **accepted**! You can find my paper here: [https://www.mdpi.com/2079-4991/13/21/2893](https://www.mdpi.com/2079-4991/13/21/2893)

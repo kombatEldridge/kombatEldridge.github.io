@@ -16,8 +16,12 @@ Now we switch gears from the *ab initio* quantum mechanics with Dr. Nascimento t
 
 Luckily, there is a group at MIT that has built an open-source python library for FDTD called [MEEP](https://meep.readthedocs.io/en/latest/). There's a bit of a learning curve to their methods, but their documentation is detailed enough to get me acquainted fairly easily.
 
-**As of Dec. 14, 2023, this is where we are. We can simulate a NP and watch its response propogate in real time (see attached GIF). We would like to figure out two main issues with MEEP before we lock in on it: 1) we don't understand how to calculate the important far field effects (extinction and scattering) and 2) we don't know how to run nanometer sized systems. MEEP operates in the micron regime and trying to run a nano-sized job requires 100-fold the amount of computational resources.**
+**Dec 14, 2023**, this is where we are. We can simulate a NP and watch its response propogate in real time (see attached GIF). We would like to figure out two main issues with MEEP before we lock in on it: 1) we don't understand how to calculate the important far field effects (extinction and scattering) and 2) we don't know how to run nanometer sized systems. MEEP operates in the micron regime and trying to run a nano-sized job requires 100-fold the amount of computational resources.**
 
 <p align="center" width="100%">
     <img width="150%" src="https://github.com/kombatEldridge/kombatEldridge.github.io/blob/cae5c858ce64e29a586854a4ec5914ee638d0753/pictures/MeepAuSphere-out.gif?raw=true">
 </p>
+
+**Dec 20, 2023**, I have now moved MEEP onto the HPC and enabled all MPI options to run parallel processes. There we a lot of dependencies we had to install to get MEEP to work, but after hours of help from my boss and system admin Eric Spangler, we got it to work.
+
+**Dec 29, 2023**, we're seeing some issues in the scattering of a Au particle. MEEP allows for a wavelength-dependent dielectric response of a material using their fitted Drude-Lorentz (DL) parameters found [here](https://github.com/NanoComp/meep/blob/master/python/materials.py). I found an issue with the values for Au from the Johnson Cristy fittings, so I made a copy of the script with the needed change. The devs were nice enough to let me submit my first pull request and it was accepted. This led to another look at the DL values of every metal from that source and some values were changed. We will need to find all the changes and add them to our installed copy on HPC.

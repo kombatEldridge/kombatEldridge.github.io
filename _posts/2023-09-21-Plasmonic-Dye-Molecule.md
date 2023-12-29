@@ -1,5 +1,7 @@
 We have begun a new project. We have been inspired from many directions to begin trying to simulate the interaction between a plasmonic NP and a solution of dye molecules. 
 
+**UPDATE (Dec 29th, 2023): As of now, we are not using DDA and instead using FDTD as our classical method.**
+
 Motivations:
 * Many of our applications in NP end with optical detection and SERS enhancement with Raman-active dye molecules.
 * I am extremely interested in electronic structure theory and the representation of a dye molecule is best from an *ab initio* point.

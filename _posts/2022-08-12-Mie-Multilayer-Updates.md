@@ -12,7 +12,7 @@
 
 ## Change Log:
 
-### July 22, 2022    
+### July 22, 2022
 
 * All settings like layer size and dielectric information are stored in a JSON file called mieSettings.txt
 
@@ -51,7 +51,7 @@
 * Each layer of the sphere now uses a separate dielecric file, but dielectric information can come from on file if user simply inputs the same file path multiple times.
 * User now forced to use linear interpolation feature.
 
-### August 12, 2022    
+### August 12, 2022
 
 * Automatic interpolation optimized to use *polynomial interpolation* for dielectric information (a four-point interpolation inspired by [this resource](https://www.appstate.edu/~grayro/comphys/lecture4_11.pdf)).
 * Comments added to code and variable names updated to reflect their function.
@@ -59,130 +59,22 @@
 
 ### September 19, 2022
 
-* ***Attempting to*** make the addtion of the [scattnlay](https://github.com/ovidiopr/scattnlay) package to the web application.
+* ***Attempted to*** make the addtion of the [scattnlay](https://github.com/ovidiopr/scattnlay) package to the web application.
 * We intend to utilize the work done by K. Ladutenko, U. Pal, A. Rivera and O. Peña-Rodríguez to offer additional tools through our web app.
 
 ### September 20, 2022
-* The [scattnlay](https://github.com/ovidiopr/scattnlay) package offers a python wrapper (PyBind11) that allows the system to call on C++ files using python. Since our webpage uses python, I would like to use this wrapper. However, PyBind11 requires a g++ version 4.8 (a C++ interpreter) or higher, and our webpage server runs g++ version 4.4 and cannot be updated unless through a convoluted linux update process. Therefore, I want to use Boost.Python, which is similar to PyBind11 but more heavy duty.
-* I plan to convert the PyBind11 files in the repo to use Boost.Python instead. Hopefully, then we can run the [scattnlay](https://github.com/ovidiopr/scattnlay) package on the webpage.
+* The [scattnlay](https://github.com/ovidiopr/scattnlay) package offers a python wrapper (PyBind11) that allows the system to call on C++ files using python. Since our webpage uses python, I would like to use this wrapper. However, PyBind11 requires a g++ version 4.8 (a C++ interpreter) or higher, and our webpage server sadly runs g++ version 4.4 and cannot be updated.
 
-### September 21, 2022
-* I converted all the PyBind11 references and files to Boost.Python, but the package is still throwing errors when installing on the website.
-
-```
-((mieMultilayer:3.7)) eoks0lmrxaaf@a2plcpnl0711 [~/mieMultilayer/scattnlay]$ pip install .
-Processing /home/eoks0lmrxaaf/mieMultilayer/scattnlay
-  Installing build dependencies ... done
-  Getting requirements to build wheel ... done
-  Installing backend dependencies ... done
-  Preparing metadata (pyproject.toml) ... done
-Requirement already satisfied: numpy in /home/eoks0lmrxaaf/virtualenv/mieMultilayer/3.7/lib64/python3.7/site-packages (from python-scattnlay-Boost==2.3) (1.21.6)
-Building wheels for collected packages: python-scattnlay-Boost
-  Building wheel for python-scattnlay-Boost (pyproject.toml) ... error
-  error: subprocess-exited-with-error
-  
-  × Building wheel for python-scattnlay-Boost (pyproject.toml) did not run successfully.
-  │ exit code: 1
-  ╰─> [82 lines of output]
-      running bdist_wheel
-      running build
-      running build_py
-      running build_ext
-      building 'scattnlay_dp' extension
-      /usr/bin/gcc -pthread -Wno-unused-result -Wsign-compare -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -I/home/eoks0lmrxaaf/virtualenv/mieMultilayer/3.7/include -I/opt/alt/python37/include/python3.7m -c src/boost-wrapper.cc -o build/temp.linux-x86_64-cpython-37/src/boost-wrapper.o -std=c++0x
-      In file included from src/boost-multilayer.hpp:34,
-                       from src/boost-wrapper.cc:37:
-      src/boost-helpers.hpp:34:34: error: boost/math/complex.hpp: No such file or directory
-      src/boost-helpers.hpp:35:34: error: boost/python/numpy.hpp: No such file or directory
-      src/boost-helpers.hpp:36:28: error: boost/python.hpp: No such file or directory
-      In file included from src/nmie.hpp:41,
-                       from src/mesomie.hpp:56,
-                       from src/boost-wrapper.cc:33:
-      src/nmie-precision.hpp: In function ‘std::vector<ToFloatType, std::allocator<_CharT> > nmie::ConvertVector(std::vector<FromFloatType, std::allocator<_T2> >)’:
-      src/nmie-precision.hpp:79: error: expected initializer before ‘:’ token
-      src/nmie-precision.hpp:82: error: expected primary-expression before ‘return’
-      src/nmie-precision.hpp:82: error: expected ‘;’ before ‘return’
-      src/nmie-precision.hpp:82: error: expected primary-expression before ‘return’
-      src/nmie-precision.hpp:82: error: expected ‘)’ before ‘return’
-      src/nmie-precision.hpp: In function ‘std::vector<std::complex<_Tp>, std::allocator<std::complex<_Tp> > > nmie::ConvertComplexVector(std::vector<std::complex<_Up>, std::allocator<std::complex<_Up> > >)’:
-      src/nmie-precision.hpp:94: error: expected initializer before ‘:’ token
-      src/nmie-precision.hpp:98: error: expected primary-expression before ‘return’
-      src/nmie-precision.hpp:98: error: expected ‘;’ before ‘return’
-      src/nmie-precision.hpp:98: error: expected primary-expression before ‘return’
-      src/nmie-precision.hpp:98: error: expected ‘)’ before ‘return’
-      In file included from src/nmie.hpp:41,
-                       from src/mesomie.hpp:56,
-                       from src/boost-wrapper.cc:33:
-      src/nmie-precision.hpp: In function ‘std::vector<std::vector<std::complex<_Tp>, std::allocator<std::complex<_Tp> > >, std::allocator<std::vector<std::complex<_Tp>, std::allocator<std::complex<_Tp> > > > > nmie::ConvertComplexVectorVector(std::vector<std::vector<std::complex<_Up>, std::allocator<std::complex<_Up> > >, std::allocator<std::vector<std::complex<_Up>, std::allocator<std::complex<_Up> > > > >)’:
-      src/nmie-precision.hpp:105: error: expected initializer before ‘:’ token
-      src/boost-wrapper.cc:143: error: expected primary-expression at end of input
-      src/boost-wrapper.cc:143: error: expected ‘;’ at end of input
-      src/boost-wrapper.cc:143: error: expected primary-expression at end of input
-      src/boost-wrapper.cc:143: error: expected ‘)’ at end of input
-      src/boost-wrapper.cc:143: error: expected statement at end of input
-      src/boost-wrapper.cc:143: error: expected ‘}’ at end of input
-      src/boost-wrapper.cc: At global scope:
-      src/boost-wrapper.cc:143: error: expected ‘}’ at end of input
-      cc1plus: warning: unrecognized command line option "-Wno-unused-result"
-      Failed to build all extensions... Building only in double precision...
-      running bdist_wheel
-      running build
-      running build_py
-      running build_ext
-      building 'scattnlay_dp' extension
-      /usr/bin/gcc -pthread -Wno-unused-result -Wsign-compare -DDYNAMIC_ANNOTATIONS_ENABLED=1 -DNDEBUG -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -m64 -mtune=generic -D_GNU_SOURCE -fPIC -fwrapv -fPIC -I/home/eoks0lmrxaaf/virtualenv/mieMultilayer/3.7/include -I/opt/alt/python37/include/python3.7m -c src/boost-wrapper.cc -o build/temp.linux-x86_64-cpython-37/src/boost-wrapper.o -std=c++0x
-      In file included from src/boost-multilayer.hpp:34,
-                       from src/boost-wrapper.cc:37:
-      src/boost-helpers.hpp:34:34: error: boost/math/complex.hpp: No such file or directory
-      src/boost-helpers.hpp:35:34: error: boost/python/numpy.hpp: No such file or directory
-      src/boost-helpers.hpp:36:28: error: boost/python.hpp: No such file or directory
-      In file included from src/nmie.hpp:41,
-                       from src/mesomie.hpp:56,
-                       from src/boost-wrapper.cc:33:
-      src/nmie-precision.hpp: In function ‘std::vector<ToFloatType, std::allocator<_CharT> > nmie::ConvertVector(std::vector<FromFloatType, std::allocator<_T2> >)’:
-      src/nmie-precision.hpp:79: error: expected initializer before ‘:’ token
-      src/nmie-precision.hpp:82: error: expected primary-expression before ‘return’
-      src/nmie-precision.hpp:82: error: expected ‘;’ before ‘return’
-      src/nmie-precision.hpp:82: error: expected primary-expression before ‘return’
-      src/nmie-precision.hpp:82: error: expected ‘)’ before ‘return’
-      src/nmie-precision.hpp: In function ‘std::vector<std::complex<_Tp>, std::allocator<std::complex<_Tp> > > nmie::ConvertComplexVector(std::vector<std::complex<_Up>, std::allocator<std::complex<_Up> > >)’:
-      src/nmie-precision.hpp:94: error: expected initializer before ‘:’ token
-      src/nmie-precision.hpp:98: error: expected primary-expression before ‘return’
-      src/nmie-precision.hpp:98: error: expected ‘;’ before ‘return’
-      src/nmie-precision.hpp:98: error: expected primary-expression before ‘return’
-      src/nmie-precision.hpp:98: error: expected ‘)’ before ‘return’
-      In file included from src/nmie.hpp:41,
-                       from src/mesomie.hpp:56,
-                       from src/boost-wrapper.cc:33:
-      src/nmie-precision.hpp: In function ‘std::vector<std::vector<std::complex<_Tp>, std::allocator<std::complex<_Tp> > >, std::allocator<std::vector<std::complex<_Tp>, std::allocator<std::complex<_Tp> > > > > nmie::ConvertComplexVectorVector(std::vector<std::vector<std::complex<_Up>, std::allocator<std::complex<_Up> > >, std::allocator<std::vector<std::complex<_Up>, std::allocator<std::complex<_Up> > > > >)’:
-      src/nmie-precision.hpp:105: error: expected initializer before ‘:’ token
-      src/boost-wrapper.cc:143: error: expected primary-expression at end of input
-      src/boost-wrapper.cc:143: error: expected ‘;’ at end of input
-      src/boost-wrapper.cc:143: error: expected primary-expression at end of input
-      src/boost-wrapper.cc:143: error: expected ‘)’ at end of input
-      src/boost-wrapper.cc:143: error: expected statement at end of input
-      src/boost-wrapper.cc:143: error: expected ‘}’ at end of input
-      src/boost-wrapper.cc: At global scope:
-      src/boost-wrapper.cc:143: error: expected ‘}’ at end of input
-      cc1plus: warning: unrecognized command line option "-Wno-unused-result"
-      error: command '/usr/bin/gcc' failed with exit code 1
-      [end of output]
-  
-  note: This error originates from a subprocess, and is likely not a problem with pip.
-  ERROR: Failed building wheel for python-scattnlay-Boost
-Failed to build python-scattnlay-Boost
-ERROR: Could not build wheels for python-scattnlay-Boost, which is required to install pyproject.toml-based projects
-```
-
-
-![twenty-first night](/pictures/twentyfirst.gif)
+### October 24, 2023
+* Small changes made throughout the year but never logged:
+    * Info buttons added to each input parameter.
+    * App now accepts one or multiple material files.
+    * Slide button added to deliberate between one master material file and multiple material files.
 
 ---
 
 ### Future Work/Works in Progress
     
-* There is an issue right now where the near-field enhancement for a pure Silica sphere is returning a value close to $0.014$ where $Q_{nf}=1$ would be expected.
-* We are curious to see if we can provide the $Q_{ext}$, $Q_{sca}$, and $Q_{abs}$ for each layer.
+* The calculations behind $Q_{nf}$ are not correct (I think). Will need to dive further into the math.
 * To solidify the validity of the code, I plan on providing a proof for the equations used.
-* The webpage version of the code needs to accept more than one dielectric file.
-* Webpage version also needs info snippets for each input to help the user.
+* I need to change every reference of "dielectric" to "refractive index". The code calculates using index and not dielectric. This is a very important distinction. 

@@ -1,5 +1,7 @@
 Here are detailed notes on how to find the polarizability of any dye molecule using *ab initio* DFT and TDDFT.
 
+**UPDATE (Dec 29th, 2023): As of now, we are not using DDA and instead using FDTD as our classical method.**
+
 ### Step 1: Original .xyz File Creation
 Using Avogadro2, a free software you can download on your machine, you draw your desired dye molecule. You should then optimize its shape. For the Mac, on the toolbar, go to Extensions > Open Babel > Optimize Geometry. This optimization algorithm uses what is called a Universal Force Field. The parameters used to generate the Universal Force Field include a set of hybridization dependent atomic bond radii, a set of hybridization angles, van der Waals parameters, torsional and inversion barriers, and a set of effective nuclear charges (https://pubs.acs.org/doi/abs/10.1021/ja00051a040).
 

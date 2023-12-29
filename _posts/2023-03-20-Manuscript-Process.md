@@ -1,6 +1,6 @@
 I started writing a manuscript for publication on the Mulitlayer project on December 10th, 2022. I had gone home for Christmas, and I had some time before the festivities started. Here is a retroactive timeline of my progress. 
 
-TLDR: You can find the publication here: (https://www.mdpi.com/2079-4991/13/21/2893)[https://www.mdpi.com/2079-4991/13/21/2893].
+**TLDR: You can find the publication [here](https://www.mdpi.com/2079-4991/13/21/2893).**
 
 ## Step 0: Data Collection & Preparation
 ### Collection

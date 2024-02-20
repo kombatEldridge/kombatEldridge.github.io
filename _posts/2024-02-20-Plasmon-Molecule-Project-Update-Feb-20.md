@@ -1,6 +1,6 @@
 ### Progress on GitHub
 
-Because I am hoping to get hired in the computer science field when I'm done here, I think its best if my progress is written in the language of the people. Thus, I have a public repo of my work on Github [here](https://github.com/kombatEldridge/plasmonMolecule). Some parts of the final product will be hidden from the repo because they are Dr. Nascimento's work (*Bohr*) and I want to respect his work without accidentally publishing something private. 
+Because I am hoping to get hired in the computer science field when I'm done here, I think its best if my progress is written in the language of the people. Thus, I have a private repo of my work on Github. Some parts of the project need to be hidden from the repo because they are Dr. Nascimento's work (*Bohr*) and I want to respect his work without accidentally publishing something private. That being said, when the project is done, I will release the repo as public to be seen by the masses. 
 
 ### Workflow
 As I have combined Bohr and MEEP into one project, I have create this chart to keep track of the overall workflow of the code.

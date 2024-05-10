@@ -1,10 +1,10 @@
-# Changes to the Mie Multilayer code
+# Changes to the Mie Multilayer code on ywangcomp.org
 
 *Code inspired by "Improved recursive algorithm for light scattering by a multilayered sphere" from Applied Optics Yang 2003*
 
 [Current webpage app](http://ywangcomp.org/multilayer.html)
 
-[Current repository](https://github.com/kombatEldridge/mieMultilayer/blob/194876399626b4e6be7a885a2d7a52cd65974582/mieMultilayer.py)
+[Current repository](https://github.com/kombatEldridge/mieMultilayer)
 
 [Current README.md](https://kombateldridge.github.io/2022/07/22/Mie-Multilayer-Jupyter-Notebook.html)
 
